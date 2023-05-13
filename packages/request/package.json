@@ -1,5 +1,5 @@
 {
-  "name": "@nxg-labs/request",
+  "name": "@nxglabs-lib/request",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
