@@ -46,7 +46,7 @@ class Service {
         return Service.handleError(res);
       }
     } catch (error) {
-      return Service.handleError(error);
+      throw error;
     }
   }
 
