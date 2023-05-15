@@ -35,19 +35,16 @@ class Service {
       });
     }
 
-    try {
-      const res = await http.request<unknown, { code: HttpStatusCode; data: any; err_msg: string }>(
-        requestOptions,
-      );
-      const { code, data } = res;
-      if (code === HttpStatusCode.Ok || code === HttpStatusCode.Created) {
-        return data;
-      } else {
-        return Service.handleError(res);
-      }
-    } catch (error) {
-      throw error;
+    const res = await http.request<unknown, { code: HttpStatusCode; data: any; err_msg: string }>(
+      requestOptions,
+    );
+    const { code, data } = res;
+    if (code === HttpStatusCode.Ok || code === HttpStatusCode.Created) {
+      return data;
+    } else {
+      return Service.handleError(res);
     }
+    // 出现错误交给上层应用处理
   }
 
   static handleError(err: any) {
