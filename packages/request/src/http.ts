@@ -9,4 +9,4 @@ const http = axios.create({
   },
 });
 
-export { http };
+export { http, axios };
