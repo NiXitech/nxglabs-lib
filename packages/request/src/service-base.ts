@@ -6,7 +6,7 @@ import {
   GET_REGX,
   HttpCodeError,
 } from './constant';
-import { ServiceCallOptions, ServiceError, ServiceOptions } from './type';
+import { ServiceCallOptions, ServiceOptions } from './type';
 
 class Service {
   options: ServiceOptions;
@@ -14,7 +14,7 @@ class Service {
     this.options = options;
   }
 
-  async call<T>({ apiName, params, options = {} }: ServiceCallOptions): Promise<T | ServiceError> {
+  async call<T>({ apiName, params, options = {} }: ServiceCallOptions): Promise<T> {
     const { baseUrl, http } = this.options;
     const beforePath = BEFORE_PATH_REGX.test(apiName) ? '' : '/';
     const requestUrl = `${baseUrl.replace(AFTER_PATH_REGX, '')}${beforePath}${apiName}`;
@@ -42,7 +42,7 @@ class Service {
     if (code === HttpStatusCode.Ok || code === HttpStatusCode.Created) {
       return data;
     } else {
-      return Service.handleError(res);
+      throw Service.handleError(res);
     }
     // 出现错误交给上层应用处理
   }
