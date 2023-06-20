@@ -18,6 +18,7 @@ jobs:
           node-version: 16.20.0
       - run: npm i -g pnpm
       - run: pnpm i
+      - run: pnpm build:request
 
   publish-npm:
     needs: build
@@ -30,6 +31,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm i -g pnpm
       - run: pnpm i
-      - run: pnpm publish
+      - run: pnpm publish:request
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
