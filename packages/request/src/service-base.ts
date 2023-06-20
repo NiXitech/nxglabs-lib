@@ -19,6 +19,7 @@ class Service {
     const beforePath = BEFORE_PATH_REGX.test(apiName) ? '' : '/';
     const requestUrl = `${baseUrl.replace(AFTER_PATH_REGX, '')}${beforePath}${apiName}`;
     const { method = 'POST' } = options;
+
     const requestOptions = {
       method,
       url: requestUrl,
