@@ -6,7 +6,7 @@
   "author": "nxglabs-yangweifan",
   "scripts": {
     "build:request": "rollup -c ./packages/request/rollup.config.ts --configPlugin typescript",
-    "publish:request": "cd packages/request && pnpm publish"
+    "publish:request": "cd packages/request/dist && pnpm publish"
   },
   "keywords": [],
   "type": "module",
